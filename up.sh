@@ -20,4 +20,4 @@ fi
 
 cd $SCRIPT_DIR
 
-sudo docker compose up .
+sudo docker compose up 
