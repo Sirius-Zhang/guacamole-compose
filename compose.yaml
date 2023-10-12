@@ -1,6 +1,6 @@
 version: "3"
 services:
-  frps:
+  guacamole-frps:
     image: guacamole-frps
     build: ./frp/frps
     environment:
@@ -9,21 +9,21 @@ services:
     ports: 
       - "15000:15000"
 
-  mysql:
+  guacamole-mysql:
     image: guacamole-mysql
     environment:
       - MYSQL_ALLOW_EMPTY_PASSWORD=1
     build: ./mysql
 
-  guacd:
+  guacamole-guacd:
     image: guacd-chinese
     build: ./guacd
     depends_on:
-      - frps
+      - guacamole-frps
     links:
-      - frps
+      - guacamole-frps:frps
 
-  guacamole:
+  guacamole-guacamole:
     image: guacamole/guacamole
     environment:
       - MYSQL_DATABASE=guacamole
@@ -32,11 +32,11 @@ services:
     ports:
       - "8080:8080"
     depends_on:
-      - mysql
-      - frps
-      - guacd
+      - guacamole-mysql
+      - guacamole-frps
+      - guacamol-guacd
     links:
-      - mysql
-      - frps
-      - guacd
+      - guacamole-mysql:mysql
+      - guacamole-frps:frps
+      - guacamole-guacd:guacd
 
