@@ -1,0 +1,37 @@
+version: "3"
+services:
+  frps:
+    image: guacamole-frps
+    build: ./frp/frps
+    ports: 
+      - "15000:15000"
+
+  mysql:
+    image: guacamole-mysql
+    build: ./mysql
+
+  guacd:
+    image: guacd-chinese
+    build: ./guacd
+    depends_on:
+      - frps
+    links:
+      - frps
+
+  guacamole:
+    image: guacamole/guacamole
+    environment:
+      - MYSQL_DATABASE=guacamole
+      - MYSQL_USER=guacamole
+      - MYSQL_PASSWORD=guacamole
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql
+      - frps
+      - guacd
+    links:
+      - mysql
+      - frps
+      - guacd
+
