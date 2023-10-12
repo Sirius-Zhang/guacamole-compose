@@ -1,5 +1,5 @@
 bindAddr = "0.0.0.0"
-bindPort = "{{ .Envs.FRP_SERVER_PORT }}"
+bindPort = {{ .Envs.FRP_SERVER_PORT }}
 
 auth.method = "token"
 auth.token = "{{ .Envs.FRP_AUTH_TOKEN }}"

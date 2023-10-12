@@ -20,4 +20,4 @@ fi
 
 cd $SCRIPT_DIR
 
-sudo docker compose up --build --always-recreate-deps --no-attach --abort-on-container-exit	
+sudo docker compose up -p guacamole --build --always-recreate-deps --no-attach --abort-on-container-exit	
