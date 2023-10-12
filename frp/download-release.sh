@@ -20,7 +20,7 @@ if [ ${#matched_files[@]} -gt 0 ]; then
   file_url="${file_to_download}"
   wget "${file_url}" -O frp.tar.gz
   echo "Downloaded: ${file_to_download}"
-  tar -xf frp.tar.gz -C ./files
+  tar -xf frp.tar.gz --strip-components=1 -C ./files
   cp ./files/frps ./frps
   cp ./files/frpc ./frpc
 else

@@ -1,0 +1,14 @@
+user = "frpc"
+
+serverAddr = "{{ .Envs.FRP_SERVER_ADDR }}"
+
+serverPOrt = "{{ .Envs.FRP_SERVER_PORT }}"
+
+auth.method = "token"
+auth.token = "{{ .Envs.FRP_AUTH_TOKEN }}"
+
+[[proxies]]
+name = "example-service"
+type = "tcp"
+localIp = "{{ .Envs.FRP_LOCAL_IP }}"
+localPort = "{{ .Envs.FRP_LOCAL_PORT }}"

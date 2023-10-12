@@ -3,11 +3,16 @@ services:
   frps:
     image: guacamole-frps
     build: ./frp/frps
+    environment:
+      - FRP_SERVER_PORT=15000
+      - FRP_AUTH_TOKEN=*********
     ports: 
       - "15000:15000"
 
   mysql:
     image: guacamole-mysql
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=1
     build: ./mysql
 
   guacd:

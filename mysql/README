@@ -1,0 +1,9 @@
+### MYSQL
+
+----
+
+Run `acquire-init-sql.sh` first to acquire the `initdb.sql` file to be used to build image.
+
+Modify `user.sql` according to your needs. But do be aware should you change database name and database user.
+
+You will need to change `compose.yaml` to match with your user and database.
