@@ -9,19 +9,19 @@ services:
     ports: 
       - "15000:15000"
 
-  mysql:
-    image: guacamole-mysql
-    environment:
-      - MYSQL_ALLOW_EMPTY_PASSWORD=1
-    build: ./mysql
-
   guacd:
     image: guacd-chinese
     build: ./guacd
     depends_on:
       - frps
     links:
-      - frps:frps
+      - frps
+
+  mysql:
+    image: guacamole-mysql
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=1
+    build: ./mysql
 
   guacamole:
     image: guacamole/guacamole
@@ -29,14 +29,14 @@ services:
       - MYSQL_DATABASE=guacamole
       - MYSQL_USER=guacamole
       - MYSQL_PASSWORD=guacamole
+      - GUACD_HOSTNAME=guacd
     ports:
       - "8080:8080"
     depends_on:
+      - guacd
       - mysql
       - frps
-      - guacd
     links:
-      - mysql:mysql
-      - frps:frps
-      - guacd:guacd
-
+      - guacd
+      - mysql
+      - frps
