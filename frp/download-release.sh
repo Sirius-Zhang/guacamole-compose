@@ -1,5 +1,9 @@
 #!/bin/bash
 
+if [ ! -d "./files" ]; then
+  mkdir files
+fi
+
 repo_owner="fatedier"
 repo_name="frp"
 partial_file_name="linux_amd64"
