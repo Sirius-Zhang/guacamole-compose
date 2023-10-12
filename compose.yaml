@@ -34,7 +34,7 @@ services:
     depends_on:
       - guacamole-mysql
       - guacamole-frps
-      - guacamol-guacd
+      - guacamole-guacd
     links:
       - guacamole-mysql:mysql
       - guacamole-frps:frps
