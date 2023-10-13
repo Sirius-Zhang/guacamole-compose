@@ -25,7 +25,9 @@ services:
 
   guacamole:
     image: guacamole/guacamole
+    restart: always
     environment:
+      - MYSQL_HOSTNAME=mysql
       - MYSQL_DATABASE=guacamole
       - MYSQL_USER=guacamole
       - MYSQL_PASSWORD=guacamole
